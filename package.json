@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "prod": "tsc && \"forever ./dist/server.js\""
+    "build": "tsc",
+    "start": "forever start dist/server.js",
+    "stop": "forever stop dist/server.js"
   },
   "author": "ANKUL KUMAR",
   "license": "ISC",
