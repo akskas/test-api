@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { Global } from "../../global";
+import { ResponseCodes } from "../../utils/responseCodes";
 
 export let login = (req: Request, res: Response) => {
   var authValues = req.headers.authorization &&
     req.headers.authorization.split(" ");
   if (!authValues || authValues[0] !== "Basic" || !authValues[1]) {
-    res.status(400).json({ error: "Invalid request"});
+    res.status(ResponseCodes.INVALID_REQUEST).json({ errors: ["Invalid request"]});
   } else {
     const decodedCreds = new Buffer(authValues[1], "base64").toString();
     const username = decodedCreds.split(":")[0];
@@ -17,9 +18,9 @@ export let login = (req: Request, res: Response) => {
     );
 
     if (!user)
-      res.status(400).json({ error: "Invalid credentials"});
+      res.status(ResponseCodes.UNAUTHORIZED).json({ errors: ["Invalid credentials. username or password is incorrect."]});
     else if (!user.isActive)
-      res.status(401).json({ error: "Inactive user"});
+      res.status(ResponseCodes.USER_BLOCKED).json({ errors: ["Inactive user."]});
     else {
       var response = {
         username: user.username,
@@ -27,7 +28,7 @@ export let login = (req: Request, res: Response) => {
         lastName: user.lastName,
         mobile: user.mobile
       };
-      res.status(200).json(response);
+      res.status(ResponseCodes.SUCCESS).json(response);
     }
   }
 

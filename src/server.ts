@@ -27,11 +27,6 @@ if (!process.env.AWS_SECRET_ACCESS_KEY) {
   process.exit(1);
 }
 
-if (!process.env.AWS_REGION) {
-  console.log("AWS_REGION environment variable not set");
-  process.exit(1);
-}
-
 if (!process.env.AWS_S3_BUCKET_NAME) {
   console.log("AWS_S3_BUCKET_NAME environment variable not set");
   process.exit(1);
