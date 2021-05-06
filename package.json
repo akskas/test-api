@@ -25,6 +25,6 @@
     "ts-class-validator": "^0.2.2",
     "tsc-watch": "^2.4.0",
     "typescript": "^3.6.2",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   }
 }
