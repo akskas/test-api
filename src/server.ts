@@ -11,7 +11,7 @@ if (!process.env.NODE_ENV)
 
 if (fs.existsSync(".env")) {
   console.log("Using ENVs from .env file");
-  console.log("test log - 2");
+  console.log("test log - 3");
   dotenv.config({ path: ".env" });
 } else {
   console.log("Using ENVs from .env.example file ");
